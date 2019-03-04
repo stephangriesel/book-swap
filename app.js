@@ -36,8 +36,8 @@ const defaultRoute = require('./routes/default-route')
 app.use('/', defaultRoute);
 
 // --> Books Route
-const bookRoute = require('./routes/book-route')
-app.use('/', bookRoute);
+// const bookRoute = require('./routes/book-route')
+// app.use('/', bookRoute);
 
 // --> Signup Route
 const signupRoute = require('./routes/signup-route')
