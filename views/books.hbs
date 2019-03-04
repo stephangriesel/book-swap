@@ -1,0 +1,18 @@
+<h1>BOOKS</h1>
+<p><button><a href="books/add">ADD A BOOK</a></button></p>
+{{#each books}}
+<div class="item-wrapper-outside">
+    <div class="item-wrapper-inside">
+        <div class="item-img">
+            <img src="{{imageLink}}" />
+        </div>
+        <h5>
+            <a href="book/{{this._id}}">{{this.title}}</a>
+        </h5>
+        <div class="buttons">
+            <a href="/books/edit?book_id={{this._id}}" class="edit-button">EDIT</a>
+            <a href="/books/remove?book_id={{this._id}}" class="remove-button">DELETE</a>
+        </div>
+    </div>
+</div>
+{{/each}}
