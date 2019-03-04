@@ -5,8 +5,9 @@ var bodyParser = require('body-parser');
 var app = express();
 const port = 3010;
 const Book = require('./models/book');
-const path = require('path')
-const router = express.Router()
+const path = require('path');
+const router = express.Router();
+var hbs = require('hbs');
 
 // Connect
 mongoose.connect('mongodb://localhost/bookSwap');
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost/bookSwap');
 // HBS
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
+hbs.registerPartials(__dirname + "/views/partials");
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware bodyParser logic
@@ -22,7 +24,13 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-// Routes
+// Cookie Parser
+app.use(cookieParser("this-is-a-secret"));
+
+// // Clear cookies
+const logoutRoute = require('./routes/logout-route')
+app.use('/logout', logoutRoute);
+
 // --> Default Route
 const defaultRoute = require('./routes/default-route')
 app.use('/', defaultRoute);
@@ -31,23 +39,19 @@ app.use('/', defaultRoute);
 const bookRoute = require('./routes/book-route')
 app.use('/', bookRoute);
 
-// --> Auth Route
-const authRoute = require('./routes/auth-route')
-app.use('/', authRoute);
-
 // --> Signup Route
 const signupRoute = require('./routes/signup-route')
 app.use('/', signupRoute);
 
+// --> Login Route
+const loginRoute = require('./routes/login-route')
+app.use('/', loginRoute);
 
+// --> Profile Route
+const profileRoute = require('./routes/profile-route')
+app.use('/', profileRoute);
 
-// Cookie Parser
-app.use(cookieParser("this-is-a-secret"));
+// --> Logout Route
 
-// Clear cookies
-app.get('/', function(req,res){
-    res.clearCookie('this-is-a-secret');
-    res.send('Cookie deleted');
-  });
 
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${port}!`))
