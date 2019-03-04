@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const User = require("../models/user");
 
 // Get the books
 router.get('/books', (req, res) => {
+    // User.findOne({ email: req.signedCookies.email }, (err, user) => {
+    //     if (req.signedCookies.email) {
+    //         res.render('books', { user })
+    //     } else {
+    //         res.redirect('login')
+    //     }
+    // });
     Book.find()
         .then(books => {
             res.render("books", { books })
@@ -46,7 +54,7 @@ router.post('/books/add', (req, res, next) => {
 
 // Edit the book
 router.get('/books/edit', (req, res, next) => {
-    Book.findOne({ _id: req.query.book_id }) 
+    Book.findOne({ _id: req.query.book_id })
         .then((book) => {
             res.render("book-edit", { book });
         })
@@ -86,6 +94,13 @@ router.post('/books/edit', (req, res, next) => {
 
 // Remove book
 router.get('/books/remove', (req, res, next) => {
+    // User.findOne({ email: req.signedCookies.email }, (err, user) => {
+    //     if (req.signedCookies.email) {
+    //         res.render('books', { user })
+    //     } else {
+    //         res.redirect('login')
+    //     }
+    // });
     Book.findOneAndRemove({ _id: req.query.book_id })
         .then((book) => {
             res.render("book-remove", { book });
