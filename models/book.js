@@ -6,13 +6,10 @@ const Schema = mongoose.Schema;
 
 const BookSchema = new Schema( 
     {
+    title: String,
     author: String,
-    country: String,
     imageLink: String,
     language: String,
-    link: String,
-    pages: Number,
-    title: String,
     year: Number
 }
 );
