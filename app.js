@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+  // mongooseHistory = require('mongoose-history'); // https://github.com/nassor/mongoose-history
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
-const port = 3001;
+const port = 3008;
 const Book = require('./models/book');
+// const History = require('./models/history');
 const path = require('path');
 const router = express.Router();
 var hbs = require('hbs');
@@ -50,8 +52,5 @@ app.use('/', loginRoute);
 // --> Profile Route
 const profileRoute = require('./routes/profile-route')
 app.use('/', profileRoute);
-
-// --> Logout Route
-
 
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${port}!`))

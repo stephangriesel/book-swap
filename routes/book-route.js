@@ -12,12 +12,15 @@ router.get('/books', (req, res) => {
     //     }
     // });
     Book.find()
+        .populate("users")
+        .exec()
         .then(books => {
             res.render("books", { books })
         })
         .catch(error => {
             console.log(error)
         })
+        
 });
 
 // Add book
@@ -33,20 +36,28 @@ router.post('/books/add', (req, res, next) => {
         language,
         year
     } = req.body;
+    const userId = req.signedCookies.userId;
     const newBook = new Book(
         {
-            title,
-            author,
-            imageLink,
-            language,
-            year
+            title: title,
+            author: author,
+            imageLink: imageLink,
+            language: language,
+            year: year,
+            user: userId
         }
     );
     newBook.save()
         .then((book) => {
-            res.redirect('/books');
+            debugger
+            User.findByIdAndUpdate(userId, { $push: { books: book._id } }).then(updatedUser => {
+                debugger;
+                res.redirect('/books');
+
+            })
         })
         .catch((error) => {
+            debugger
             console.log(error);
         })
 

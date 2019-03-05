@@ -28,7 +28,8 @@
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "hbs": "^4.0.3",
-    "mongoose": "^5.4.16"
+    "mongoose": "^5.4.16",
+    "mongoose-history": "^0.8.0"
   },
   "bugs": {
     "url": "https://github.com/stephangriesel/book-swap/issues"

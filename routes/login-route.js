@@ -21,7 +21,8 @@ router.get('/login', (req, res) => {
       else {
         bcrypt.compare(req.body.password, user.password, (err, equal) => {
           if (equal) {
-            res.cookie("email", req.body.email, { signed: true })
+            res.cookie("email", req.body.email, { signed: true });
+            res.cookie("userId", user._id, { signed: true } );
             res.redirect("books")
           }
           else {
