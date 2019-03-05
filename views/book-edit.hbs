@@ -1,19 +1,23 @@
-<form action="/books/edit?book_id={{book._id}}" method="post">
+{{>header }}
+<div class="dead-center">
+    <form action="/books/edit?book_id={{book._id}}" method="post">
 
-    <label for="">Title:</label>
-    <input type="text" name="title" value="{{book.title}}">
+        <label for="">Title:</label><br>
+        <input type="text" name="title" value="{{book.title}}"><br>
 
-    <label for="">Author:</label>
-    <input type="text" name="author" value="{{book.author}}">
+        <label for="">Author:</label><br>
+        <input type="text" name="author" value="{{book.author}}"><br>
 
-    <label for="">Imagelink:</label>
-    <input type="text" name="imageLink" value="{{book.imageLink}}">
+        <label for="">Imagelink:</label><br>
+        <input type="text" name="imageLink" value="{{book.imageLink}}"><br>
 
-    <label for="">Language:</label>
-    <input type="text" name="language" value="{{book.language}}">
+        <label for="">Language:</label><br>
+        <input type="text" name="language" value="{{book.language}}"><br>
 
-    <label for="">Year:</label>
-    <input type="number" name="year" value="{{book.year}}">
-    
-    <button type="submit">EDIT</button>
-</form>
+        <label for="">Year:</label><br>
+        <input type="number" name="year" value="{{book.year}}"><br>
+
+        <button type="submit">EDIT</button>
+    </form>
+</div>
+{{>footer }}
