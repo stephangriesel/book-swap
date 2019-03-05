@@ -8,7 +8,7 @@ var userSchema = new Schema({
   lastname: String,
   email: String,
   password: String,
-  books: [{type: mongoose.Schema.Types.ObjectId, ref: 'books'}]
+  books: [{type: mongoose.Schema.Types.ObjectId, ref: 'Book'}]
 
 });
 

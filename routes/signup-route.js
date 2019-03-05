@@ -18,7 +18,6 @@ router.post("/signup", (req, res) => {
   const lastname = req.body.lastname;
   const email = req.body.email;
   const password = req.body.password;
-  debugger;
   if (name === "" || password === "") {
     res.render("auth/signup", {
       errorMessage: "Indicate a username and a password to sign up"
