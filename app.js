@@ -10,7 +10,7 @@ const router = express.Router();
 var hbs = require('hbs');
 
 // Connect
-mongoose.connect('mongodb://localhost/bookSwap');
+mongoose.connect('mongodb://localhost/bookSwap', { useNewUrlParser: true });
 
 // HBS
 app.set('view engine', 'hbs');

@@ -17,7 +17,7 @@ router.get('/login', (req, res) => {
   router.post("/login", (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err) res.send("error")
-      else if (!user) { res.send("Incorrect, try again") }
+      else if (!user) { res.render("incorrect-login") }
       else {
         bcrypt.compare(req.body.password, user.password, (err, equal) => {
           if (equal) {
@@ -25,7 +25,7 @@ router.get('/login', (req, res) => {
             res.redirect("books")
           }
           else {
-            res.send("Incorrect, try again")
+            res.render("incorrect-login")
           }
         });
       }
