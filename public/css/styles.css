@@ -5,6 +5,7 @@ body {
  
 }
 
+
 .site {
   display:flex;
   min-height:100vh;
@@ -70,6 +71,25 @@ img {
   width: 200px;
 }
 
+.menu {
+  color:#FFFFFF;
+  display:flex;
+  justify-content: left;
+  align-items: center;
+  background-color:#0A2C42;
+  height:50px;
+  padding:20px 10px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+li {
+  padding-right:8px;
+}
+
 footer {
   color:#FFFFFF;
   display:flex;
@@ -78,4 +98,13 @@ footer {
   background-color:#0A2C42;
   height:50px;
   padding:20px 10px;
+  text-transform: uppercase;
+}
+
+footer a {
+  color:#FFF;
+}
+
+.menu a {
+  color:#FFF;
 }
