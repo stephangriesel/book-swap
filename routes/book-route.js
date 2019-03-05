@@ -11,15 +11,15 @@ router.get('/books', (req, res) => {
     //         res.redirect('login')
     //     }
     // });
-    Book.find()
-        .populate("users")
-        .exec()
+    Book.find({})
+        .populate("user") // refers to book model data type
         .then(books => {
-            res.render("books", { books })
+            res.render("books", {displayDataBooks: books });
+            console.log("booksdata", books)
         })
         .catch(error => {
             console.log(error)
-        })
+        });
         
 });
 

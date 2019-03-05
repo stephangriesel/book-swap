@@ -1,6 +1,6 @@
 {{>header }}
 <div class="full-row">
-    {{#each books}}
+    {{#each displayDataBooks}}
     <div class="item-wrapper-outside">
         <div class="item-wrapper-inside">
             <div class="item-img">
@@ -10,7 +10,7 @@
                 <h5>Title:{{this.title}}</h5>
                 <h5>Author:{{this.author}}</h5>
                 <h5>Language:{{this.language}}</h5>
-                <h5>Uploaded by:{{this.email}}</h5>
+                <h5>Uploaded by:{{this.user.email}}</h5>
                 {{!-- <a href="book/{{this._id}}">{{this.title}}</a> --}}
             </div>
             <div class="buttons">

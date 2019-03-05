@@ -12,7 +12,7 @@ const BookSchema = new Schema(
     imageLink: String,
     language: String,
     year: Number,
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'}
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} // refers to the model. NOT COLLECTION
 }
 );
 
