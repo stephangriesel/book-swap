@@ -1,22 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user");
+const Book = require('../models/book');
+
 
 // Get the books
-// router.get('/books', (req, res) => { <-- Error: Cannot set headers after they are sent to the client
-//     if (req.signedCookies && req.signedCookies.email) {
-//       res.render('books')
-//     } else {
-//       res.render('login')
-// }
 router.get('/books', (req, res) => {
-    // User.findOne({ email: req.signedCookies.email }, (err, user) => {
-    //     if (req.signedCookies.email) {
-    //         res.render('books', { user })
-    //     } else {
-    //         res.redirect('login')
-    //     }
-    // });
     Book.find({})
         .populate("user") // refers to book model data type
         .then(books => {
@@ -126,7 +115,5 @@ router.get('/books/remove', (req, res, next) => {
             console.log(error);
         })
 });
-
-const Book = require('../models/book');
 
 module.exports = router;
