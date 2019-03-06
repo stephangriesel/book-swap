@@ -3,6 +3,12 @@ const router = express.Router();
 const User = require("../models/user");
 
 // Get the books
+// router.get('/books', (req, res) => { <-- Error: Cannot set headers after they are sent to the client
+//     if (req.signedCookies && req.signedCookies.email) {
+//       res.render('books')
+//     } else {
+//       res.render('login')
+// }
 router.get('/books', (req, res) => {
     // User.findOne({ email: req.signedCookies.email }, (err, user) => {
     //     if (req.signedCookies.email) {

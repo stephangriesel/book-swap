@@ -12,7 +12,7 @@ router.get('/login', (req, res) => {
     } else {
       res.render('login')
     }
-  })
+  });
   
   router.post("/login", (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
