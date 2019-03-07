@@ -6,18 +6,16 @@ const Book = require('../models/book');
 
 // Get the books
 router.get('/books', (req, res, next) => {
-    // if logged in show books 
-    // else show login page
-      Book.find({})
+    Book.find({})
         .populate("user") // refers to book model data type
         .then(books => {
-            res.render("books", {displayDataBooks: books });
+            res.render("books", { displayDataBooks: books });
             console.log("booksdata", books)
         })
         .catch(error => {
             console.log(error)
         });
-        
+
 });
 
 // Add book
@@ -74,7 +72,7 @@ router.get('/books/edit', (req, res, next) => {
         })
 });
 
-// Edit the book
+// Swap the book
 router.get('/books/swap', (req, res, next) => {
     Book.findOne({ _id: req.query.book_id })
         .then((book) => {

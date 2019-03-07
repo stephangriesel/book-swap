@@ -32,11 +32,13 @@ app.use(bodyParser.urlencoded({
 
 // Express sessions & Mongo Connect middleware
 app.use(session({
-  secret: "basic-auth-secret",
+  cookieName: 'session',
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
   cookie: { maxAge: 60000 },
-  email: "req.session.user.email",
-  emailjaap: "jaap",
+  secure: true,
   resave: true,
+  httpOnly: true,
+  ephemeral: true, // Deletes cookies when browser closed
   saveUninitialized: true,
   store: new Mongostore({
     mongooseConnection: mongoose.connection,
@@ -45,7 +47,19 @@ app.use(session({
 }));
 
 // Node mailer
-// Add nodemailer logic 
+app.post('/send', (req, res) => {
+  const output = `
+  <p>You have a new book request</p>
+  <h3>Contact Details</h3>
+  <ul>
+    <li>Email: ${email}</li>
+    <li>Name: ${title}</li>
+    <li>Author: ${author}</li>
+    <li>Language: ${language}</li>
+    <li>Year: ${year}</li>
+  </ul>
+  `;
+})
 
 // Protected Routes
 

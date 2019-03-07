@@ -1,6 +1,6 @@
 {{>header }}
-<div class="dead-center">
-    <form action="/send-email" method="post">
+<div class="dead-center animated zoomIn">
+    <form action="/send" method="POST">
 
         <label for="">Your email:</label><br>
         <input type="email" name="email" placeholder="enter your email"><br>
@@ -17,10 +17,11 @@
         <label for="">Year:</label><br>
         <input type="number" name="year" value="{{book.year}}"><br>
 
-        <label for="">User swapping book:</label><br>
+        {{!-- <label for="">User swapping book:</label><br>
         <input type="text" disabled="true" name="userswapping" value="{{req.session.user}}"><br>
-
+ --}}
         <button type="submit">REQUEST</button>
+        {{msg}}
     </form>
 </div>
 {{>footer }}

@@ -4,6 +4,7 @@ const User = require("../models/user");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var bodyParser = require('body-parser');
+var session = require('client-sessions');
 
 // Parser 
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -44,17 +45,101 @@ router.post("/signup", (req, res) => {
     })
 });
 
-//Login
+// NEW Login
+
+// --> https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions
+
+// router.post('/login', function (req, res) {
+//   User.findOne({ email: req.body.email }, function (err, user) { // we are referring to POST here, should it be req.body.username?
+//     if (!user) {
+//       res.render('login', { error: 'Invalid credentials' });
+//     } else {
+//       if (req.body.password === user.password) {
+//         // set cookie with user data
+//         req.session.user = user;
+//         res.cookie("email", req.body.email, { signed: true }); // <--- The old way I did it, just keeping it in here for now
+//         res.cookie("userId", user._id, { signed: true });      // <--- The old way I did it, just keeping it in here for now
+//         res.redirect('/books');
+//       } else {
+//         res.render('login', { error: 'Invalid credentials' })
+//       }
+//     }
+//   })
+// })
+
+// /* Modify it to check for a session, 
+//    lookup the user in your database 
+//    and expose the user’s profile fields 
+//    as variables for the template:
+ 
+//   ...but we don't want to rewrite this 
+//      for every route */
+
+// // router.get('/login', function(req,res){ // 
+// //   if(req.session && req.session.user) {
+// //     User.findOne({ email: req.session.user.email }, function (err, user){
+// //       if(!user) {
+// //         req.session.reset();
+// //         res.redirect('/login')
+// //       } else {
+// //         res.locals.user = user // Review
+// //         res.render('login');
+// //       }
+// //     });
+// //   } else {
+// //     res.redirect('/login')
+// //   }
+// // });
+
+// // -->>> We would rather make it into a global middleware function.
+
+// router.use(function(req, res, next) {
+//   if (req.session && req.session.user) {
+//     User.findOne({ email: req.session.user.email }, function(err, user) {
+//       if (user) {
+//         req.user = user;
+//         delete req.user.password; // delete the password from the session
+//         req.session.user = user;  //refresh the session value
+//         res.locals.user = user;
+//       }
+//       // finishing processing the middleware and run the route
+//       next();
+//     });
+//   } else {
+//     next();
+//   }
+// });
+
+// router.get('/books', requireLogin, function(req, res) {
+//   res.render('books');
+// });
+
+// function requireLogin (req, res, next) {
+//   if (!req.user) {
+//     res.redirect('/login');
+//   } else {
+//     next();
+//   }
+// };
+
+// OLD LOGIN
+
 router.get('/login', (req, res) => {
-  res.render('login')
+  if (req.session.currentUser) {
+    req.session((err) => {
+      res.render('books', { newMessage: true })
+    })
+  } else res.render("login")
 });
 
 router.post("/login", (req, res) => {
+  console.log(req.body)
   const { email, password } = req.body;
-
   User.findOne({ "email": email })
     .then(user => {
       if (bcrypt.compare(password, user.password)) {
+        res.cookie("email", req.body.email, { signed: true });
+        res.cookie("userId", user._id, { signed: true });
         req.session.user = user;
         console.log('req.session.user2', req.session.user)
         res.redirect('/books')
@@ -62,36 +147,23 @@ router.post("/login", (req, res) => {
         res.render('incorrect-login')
       }
     })
-  // User.findOne({ email: req.body.email }, (err, user) => {
-  //   if (err) res.send("error")
-  //   else if (!user) { 
-  //     res.render("incorrect-login") 
-  //   } else 
-  //     bcrypt.compare(req.body.password, user.password, (err, equal) => {
-  //       if (equal) {
-  //         // res.cookie("email", req.body.email, { signed: true });
-  //         // res.cookie("userId", user._id, { signed: true } );
-  //         req.session.user = user // express sessions
-  //         console.log("req.session.user1", req.session.user)
-  //         res.render("books")
-  //       }
-  //       else {
-  //         res.render("incorrect-login")
-  //       }
-  //     });
-  //   }
-  // })
 })
 
+// router.get('/logout', function(req, res) {
+//   // res.clearCookie('email'); // <-- Leaving this in here for now...
+//   req.session.reset();
+//   res.redirect('/');
+// });
 
-// // Logout
+// // OLD LOGOUT
 router.get('/logout', (req, res) => {
-  res.clearCookie('email');
+  
   if (!req.session.currentUser) {
     req.session.destroy((err) => {
       res.render('index', { newMessage: true })
     })
-  } else res.send("we are still in session")
+  } else res.send("we are still in session");
+  res.clearCookie('email');
 
 
 
