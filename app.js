@@ -34,7 +34,7 @@ app.use(session({
   cookie: { maxAge: 60000},
   // email: "req.session.user.email",
   // emailjaap: "jaap",
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   store: new Mongostore({
     mongooseConnection: mongoose.connection,
@@ -57,7 +57,7 @@ app.use('/', bookRoute);
 const profileRoute = require('./routes/profile-route')
 app.use('/', profileRoute);
 
-// Auth Route
+// --> Auth Route
 const authRoute = require('./routes/auth-route')
 app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))

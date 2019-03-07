@@ -5,7 +5,7 @@ const Book = require('../models/book');
 
 
 // Get the books
-router.get('/books', (req, res) => {
+router.get('/books', (req, res, next) => {
     Book.find({})
         .populate("user") // refers to book model data type
         .then(books => {

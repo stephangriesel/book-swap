@@ -56,7 +56,7 @@ router.post("/login", (req, res) => {
   .then(user => {
     if(bcrypt.compare(password, user.password)) {
       req.session.user = user;
-      console.log('req.session.user2', req.session.user)
+      // console.log('req.session.user2', req.session.user)
       res.redirect('/books')
     } else {
       res.render('incorrect-login')
