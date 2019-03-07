@@ -70,7 +70,7 @@ router.get('/login', (req, res) => {
     req.session((err) => {
       res.render('books', { newMessage: true })
     })
-  } else res.render("login")
+  } else res.render("login")     
 });
 
 router.get('/logout', function (req, res) {
