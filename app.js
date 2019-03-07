@@ -61,8 +61,6 @@ app.post('/send', (req, res) => {
   `;
 })
 
-// Protected Routes
-
 // Cookie Parser
 app.use(cookieParser("this-is-a-secret"));
 
@@ -82,7 +80,6 @@ app.use('/', profileRoute);
 const authRoute = require('./routes/auth-route')
 app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
-
 app.use('/', require("./routes/site-route"))
 
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${port}!`))
