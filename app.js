@@ -83,4 +83,6 @@ const authRoute = require('./routes/auth-route')
 app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
 
+app.use('/', require("./routes/site-route"))
+
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${port}!`))
