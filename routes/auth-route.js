@@ -62,25 +62,6 @@ router.post("/login", (req, res) => {
       res.render('incorrect-login')
     }
   })
-  // User.findOne({ email: req.body.email }, (err, user) => {
-  //   if (err) res.send("error")
-  //   else if (!user) { 
-  //     res.render("incorrect-login") 
-  //   } else 
-  //     bcrypt.compare(req.body.password, user.password, (err, equal) => {
-  //       if (equal) {
-  //         // res.cookie("email", req.body.email, { signed: true });
-  //         // res.cookie("userId", user._id, { signed: true } );
-  //         req.session.user = user // express sessions
-  //         console.log("req.session.user1", req.session.user)
-  //         res.render("books")
-  //       }
-  //       else {
-  //         res.render("incorrect-login")
-  //       }
-  //     });
-  //   }
-  // })
 })
   
 

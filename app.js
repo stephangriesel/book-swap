@@ -32,7 +32,8 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   secret: "basic-auth-secret",
   cookie: { maxAge: 60000},
-  emailjaap: "jaap",
+  // email: "req.session.user.email",
+  // emailjaap: "jaap",
   resave: true,
   saveUninitialized: true,
   store: new Mongostore({
@@ -44,14 +45,6 @@ app.use(session({
 // Cookie Parser
 app.use(cookieParser("this-is-a-secret"));
 
-// Auth Route
-const authRoute = require('./routes/auth-route')
-app.use('/', authRoute);
-
-// // Clear cookies
-// const logoutRoute = require('./routes/logout-route')
-// app.use('/logout', logoutRoute);
-
 // --> Default Route
 const defaultRoute = require('./routes/default-route')
 app.use('/', defaultRoute);
@@ -60,18 +53,13 @@ app.use('/', defaultRoute);
 const bookRoute = require('./routes/book-route')
 app.use('/', bookRoute);
 
-// --> Signup Route
-// const signupRoute = require('./routes/signup-route')
-// app.use('/', signupRoute);
-
-// --> Login Route
-// const loginRoute = require('./routes/login-route')
-// app.use('/', loginRoute);
-
 // --> Profile Route
 const profileRoute = require('./routes/profile-route')
 app.use('/', profileRoute);
 
+// Auth Route
+const authRoute = require('./routes/auth-route')
+app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
 
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${port}!`))

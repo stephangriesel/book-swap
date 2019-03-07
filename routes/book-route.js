@@ -31,7 +31,9 @@ router.post('/books/add', (req, res, next) => {
         language,
         year
     } = req.body;
-    const userId = req.signedCookies.userId;
+    // const userId = req.signedCookies.userId; // when I was using cookie approach
+    debugger
+    const userId = req.session.user // not working with session
     const newBook = new Book(
         {
             title: title,
@@ -39,13 +41,13 @@ router.post('/books/add', (req, res, next) => {
             imageLink: imageLink,
             language: language,
             year: year,
-            user: userId
+            user: userId // details of user that uploaded the book
         }
     );
     newBook.save()
         .then((book) => {
             debugger
-            User.findByIdAndUpdate(userId, { $push: { books: book._id } }).then(updatedUser => {
+            User.findByIdAndUpdate(userId, { $push: { books: book._id } }).then(updatedUser => { // push into mongo array
                 debugger;
                 res.redirect('/books');
 
@@ -63,6 +65,17 @@ router.get('/books/edit', (req, res, next) => {
     Book.findOne({ _id: req.query.book_id })
         .then((book) => {
             res.render("book-edit", { book });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+
+// Edit the book
+router.get('/books/swap', (req, res, next) => {
+    Book.findOne({ _id: req.query.book_id })
+        .then((book) => {
+            res.render("book-swap", { book });
         })
         .catch((error) => {
             console.log(error);
@@ -100,13 +113,6 @@ router.post('/books/edit', (req, res, next) => {
 
 // Remove book
 router.get('/books/remove', (req, res, next) => {
-    // User.findOne({ email: req.signedCookies.email }, (err, user) => {
-    //     if (req.signedCookies.email) {
-    //         res.render('books', { user })
-    //     } else {
-    //         res.redirect('login')
-    //     }
-    // });
     Book.findOneAndRemove({ _id: req.query.book_id })
         .then((book) => {
             res.render("book-remove", { book });

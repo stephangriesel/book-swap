@@ -9,12 +9,10 @@
             <div class="details">
                 <h5>Title:{{this.title}}</h5>
                 <h5>Author:{{this.author}}</h5>
-                <h5>Language:{{this.language}}</h5>
                 <h5>Uploaded by:{{this.user.email}}</h5>
-                {{!-- <a href="book/{{this._id}}">{{this.title}}</a> --}}
             </div>
             <div class="buttons">
-                <a href="/books/edit?book_id={{this._id}}" class="swap-button">SWAP</a>
+                <a href="/books/swap?book_id={{this._id}}" class="swap-button">SWAP</a>
                 <a href="/books/edit?book_id={{this._id}}" class="edit-button">EDIT</a>
                 <a href="/books/remove?book_id={{this._id}}" class="remove-button">DELETE</a>
             </div>
