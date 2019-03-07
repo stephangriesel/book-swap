@@ -6,7 +6,9 @@ const Book = require('../models/book');
 
 // Get the books
 router.get('/books', (req, res, next) => {
-    Book.find({})
+    // if logged in show books 
+    // else show login page
+      Book.find({})
         .populate("user") // refers to book model data type
         .then(books => {
             res.render("books", {displayDataBooks: books });
@@ -34,6 +36,7 @@ router.post('/books/add', (req, res, next) => {
     // const userId = req.signedCookies.userId; // when I was using cookie approach
     debugger
     const userId = req.session.user // not working with session
+    debugger
     const newBook = new Book(
         {
             title: title,

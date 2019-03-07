@@ -11,8 +11,8 @@ router.use(bodyParser.json());
 
 // Signup
 router.get("/signup", (req, res) => {
-    res.render("signup")
-  });
+  res.render("signup")
+});
 
 router.post("/signup", (req, res) => {
   const name = req.body.name;
@@ -24,17 +24,17 @@ router.post("/signup", (req, res) => {
       errorMessage: "Indicate a username and a password to sign up"
     });
     return;
-  } bcrypt.hash(password, saltRounds).then( hash => {
+  } bcrypt.hash(password, saltRounds).then(hash => {
     let newUser = {
-      name:name,
-      lastname:lastname,
-      email:email,
-      password:hash
+      name: name,
+      lastname: lastname,
+      email: email,
+      password: hash
     }
 
     return newUser;
 
-  }).then( newUser => {
+  }).then(newUser => {
     User.create(newUser)
     res.redirect("/login")
   })
@@ -47,34 +47,54 @@ router.post("/signup", (req, res) => {
 //Login
 router.get('/login', (req, res) => {
   res.render('login')
-  });
-  
-router.post("/login", (req, res) => {
-  const {email, password} = req.body;
+});
 
-  User.findOne({"email": email})
-  .then(user => {
-    if(bcrypt.compare(password, user.password)) {
-      req.session.user = user;
-      // console.log('req.session.user2', req.session.user)
-      res.redirect('/books')
-    } else {
-      res.render('incorrect-login')
-    }
-  })
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  User.findOne({ "email": email })
+    .then(user => {
+      if (bcrypt.compare(password, user.password)) {
+        req.session.user = user;
+        console.log('req.session.user2', req.session.user)
+        res.redirect('/books')
+      } else {
+        res.render('incorrect-login')
+      }
+    })
+  // User.findOne({ email: req.body.email }, (err, user) => {
+  //   if (err) res.send("error")
+  //   else if (!user) { 
+  //     res.render("incorrect-login") 
+  //   } else 
+  //     bcrypt.compare(req.body.password, user.password, (err, equal) => {
+  //       if (equal) {
+  //         // res.cookie("email", req.body.email, { signed: true });
+  //         // res.cookie("userId", user._id, { signed: true } );
+  //         req.session.user = user // express sessions
+  //         console.log("req.session.user1", req.session.user)
+  //         res.render("books")
+  //       }
+  //       else {
+  //         res.render("incorrect-login")
+  //       }
+  //     });
+  //   }
+  // })
 })
-  
+
 
 // // Logout
 router.get('/logout', (req, res) => {
+  res.clearCookie('email');
   if (!req.session.currentUser) {
     req.session.destroy((err) => {
-      res.render('index', {newMessage: true})
+      res.render('index', { newMessage: true })
     })
-  } else res.send ("we are still in session")
-  
-   
-    
+  } else res.send("we are still in session")
+
+
+
 })
 
 

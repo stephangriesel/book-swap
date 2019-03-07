@@ -1,6 +1,9 @@
 {{>header }}
 <div class="dead-center">
-    <form action="/books/swap?book_id={{book._id}}" method="post">
+    <form action="/send-email" method="post">
+
+        <label for="">Your email:</label><br>
+        <input type="email" name="email" placeholder="enter your email"><br>
 
         <label for="">Title:</label><br>
         <input type="text" name="title" value="{{book.title}}"><br>
@@ -15,7 +18,7 @@
         <input type="number" name="year" value="{{book.year}}"><br>
 
         <label for="">User swapping book:</label><br>
-        <input type="text" disabled="true" name="year" value="{{req.session.user}}"><br>
+        <input type="text" disabled="true" name="userswapping" value="{{req.session.user}}"><br>
 
         <button type="submit">REQUEST</button>
     </form>

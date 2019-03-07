@@ -25,13 +25,15 @@
   "dependencies": {
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "client-sessions": "^0.8.0",
     "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "hbs": "^4.0.3",
     "mongoose": "^5.4.16",
-    "mongoose-history": "^0.8.0"
+    "mongoose-history": "^0.8.0",
+    "nodemailer": "^5.1.1"
   },
   "bugs": {
     "url": "https://github.com/stephangriesel/book-swap/issues"

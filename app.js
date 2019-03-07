@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
-  // mongooseHistory = require('mongoose-history'); // https://github.com/nassor/mongoose-history
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var app = express();
+// mongooseHistory = require('mongoose-history'); // https://github.com/nassor/mongoose-history
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const app = express();
 const port = 3008;
 const Book = require('./models/book');
 // const History = require('./models/history');
 const path = require('path');
 const router = express.Router();
-var hbs = require('hbs');
+const hbs = require('hbs');
 const session = require("express-session");
 const Mongostore = require("connect-mongo")(session);
+// const nodemailer = require('nodemailer');
 
 // Connect
 mongoose.connect('mongodb://localhost/bookSwap', { useNewUrlParser: true });
@@ -21,6 +22,7 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 hbs.registerPartials(__dirname + "/views/partials");
 app.use(express.static(path.join(__dirname, 'public')));
+const cookieSession = require('client-sessions');
 
 // Middleware bodyParser logic
 app.use(bodyParser.json());
@@ -31,16 +33,21 @@ app.use(bodyParser.urlencoded({
 // Express sessions & Mongo Connect middleware
 app.use(session({
   secret: "basic-auth-secret",
-  cookie: { maxAge: 60000},
-  // email: "req.session.user.email",
-  // emailjaap: "jaap",
-  resave: false,
+  cookie: { maxAge: 60000 },
+  email: "req.session.user.email",
+  emailjaap: "jaap",
+  resave: true,
   saveUninitialized: true,
   store: new Mongostore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
   })
- }));
+}));
+
+// Node mailer
+// Add nodemailer logic 
+
+// Protected Routes
 
 // Cookie Parser
 app.use(cookieParser("this-is-a-secret"));
