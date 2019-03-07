@@ -130,13 +130,15 @@ img {
   justify-content: left;
   align-items: center;
   background-color: #0A2C42;
-  height: 50px;
+  height: 125px;
   padding: 20px 10px;
 }
 
 ul {
   display: flex;
   list-style: none;
+  margin:0;
+  padding:0;
 }
 
 li {
@@ -197,4 +199,11 @@ footer a {
 
 footer a:hover {
   color: #003044;
+}
+
+.small-logo {
+  border:10px solid #FFFFFF;
+  margin-right:20px;
+  border-radius:10px;
+  width:100px;
 }

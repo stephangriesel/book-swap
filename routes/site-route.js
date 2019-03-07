@@ -20,7 +20,7 @@ router.use(function (req, res, next) {
 
 function requireLogin(req, res, next) {
     if (!req.user) {
-        res.redirect('/login');
+        res.render('/login');
     } else {
         next();
     }
