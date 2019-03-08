@@ -13,9 +13,10 @@ const hbs = require('hbs');
 const session = require("express-session");
 const Mongostore = require("connect-mongo")(session);
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 // Connect
-mongoose.connect('mongodb://localhost/bookSwap', { useNewUrlParser: true });
+mongoose.connect(`${MONGODB_URI}`, { useNewUrlParser: true });
 
 // HBS
 app.set('view engine', 'hbs');
@@ -33,7 +34,7 @@ app.use(bodyParser.urlencoded({
 // Express sessions & Mongo Connect middleware
 app.use(session({
   cookieName: 'session',
-  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  secret: `${COOKIE_SECRET}`,
   cookie: { maxAge: 60000 },
   secure: true,
   resave: true,
@@ -47,7 +48,7 @@ app.use(session({
 }));
 
 // Cookie Parser
-app.use(cookieParser("this-is-a-secret"));
+app.use(cookieParser(`${COOKIE_PARSER}`));
 
 // --> Default Route
 const defaultRoute = require('./routes/default-route')
