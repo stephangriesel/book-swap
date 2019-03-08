@@ -37,16 +37,29 @@ p {
   flex-wrap: wrap;
 }
 
+.bg-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  background: rgba(139, 139, 139, 0.6);
+  border-radius: 15px;
+  padding:20px;
+}
+
 .bg {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 500px;
+  width: 20em;
+  height: 35em;
   background: rgba(72,72,70,0.6);
   border-radius: 15px;
   padding:20px;
+  margin:20px;
 }
 
 .bg img {
@@ -55,6 +68,7 @@ p {
 
 .index-page {
   background: url("../img/bg.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -109,17 +123,21 @@ p {
 
 /* INPUT */
 
+
 input {
-  color:#484846;
+  color:#353535;
   border:none;
   padding:15px;
+  margin:10px 0;
   font-size:19px;
 }
 
 input:focus {
-  background:#7b8fa0;
+  background:#d6d6d6;
   border:none;
   padding:15px;
+  outline-color: #a0d6f2;
+  outline-style: solid 5px;
 }
 /* BUTTONS */
 
@@ -168,16 +186,7 @@ img {
   width: 200px;
 }
 
-.menu {
-  color: #FFFFFF;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  background-color: #144670;
-  height: 125px;
-  padding: 20px 10px;
-  font-size:20px;
-}
+
 
 ul {
   display: flex;
@@ -202,6 +211,17 @@ footer {
 }
 
 /* HEADER MENU */
+
+.menu {
+  color: #FFFFFF;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: #144670;
+  height: 125px;
+  padding: 20px 10px;
+  font-size:18px;
+}
 
 .menu li {
   border: 1px solid #FFFFFF;
