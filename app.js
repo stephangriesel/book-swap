@@ -16,7 +16,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 // Connect
-mongoose.connect(`${MONGODB_URI}`, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI), { useNewUrlParser: true };
 
 // HBS
 app.set('view engine', 'hbs');
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 // Express sessions & Mongo Connect middleware
 app.use(session({
   cookieName: 'session',
-  secret: `${COOKIE_SECRET}`,
+  secret: `COOKIE_SECRET`,
   cookie: { maxAge: 60000 },
   secure: true,
   resave: true,
@@ -48,7 +48,7 @@ app.use(session({
 }));
 
 // Cookie Parser
-app.use(cookieParser(`${COOKIE_PARSER}`));
+app.use(cookieParser(`COOKIE_PARSER`));
 
 // --> Default Route
 const defaultRoute = require('./routes/default-route')
