@@ -1,27 +1,29 @@
 {{>header }}
-<div class="dead-center animated zoomIn">
-    <form action="/send" method="POST">
+<div class="dead-center">
+    <div class="animated zoomIn bg">
+        <form action="https://formcarry.com/s/lEVCP709Nwe" method="POST" accept-charset="UTF-8">
 
-        <label for="">Your email:</label><br>
-        <input type="email" name="email" placeholder="enter your email"><br>
+            <label for="">Your email:</label><br>
+            <input type="email" name="email" placeholder="enter your email"><br>
 
-        <label for="">Title:</label><br>
-        <input type="text" name="title" value="{{book.title}}"><br>
+            <label for="">Title:</label><br>
+            <input type="text" name="title" value="{{book.title}}"><br>
 
-        <label for="">Author:</label><br>
-        <input type="text" name="author" value="{{book.author}}"><br>
+            <label for="">Author:</label><br>
+            <input type="text" name="author" value="{{book.author}}"><br>
 
-        <label for="">Language:</label><br>
-        <input type="text" name="language" value="{{book.language}}"><br>
+            <label for="">Language:</label><br>
+            <input type="text" name="language" value="{{book.language}}"><br>
 
-        <label for="">Year:</label><br>
-        <input type="number" name="year" value="{{book.year}}"><br>
+            <label for="">Year:</label><br>
+            <input type="number" name="year" value="{{book.year}}"><br>
 
-        {{!-- <label for="">User swapping book:</label><br>
-        <input type="text" disabled="true" name="userswapping" value="{{req.session.user}}"><br>
- --}}
-        <button type="submit">REQUEST</button>
-        {{msg}}
-    </form>
+            {{!-- <label for="">User swapping book:</label><br>
+        <input type="text" disabled="true" name="userswapping" value="{{book.user}}"><br> --}}
+
+            <button type="submit">REQUEST</button>
+        </form>
+
+    </div>
 </div>
 {{>footer }}

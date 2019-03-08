@@ -83,6 +83,7 @@ h5 {
 
 .item-wrapper-inside {
   display: flex;
+  background: rgba(168, 168, 168, 0.6);
   justify-content: center;
   align-items: center;
   flex-direction: column;

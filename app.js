@@ -12,7 +12,7 @@ const router = express.Router();
 const hbs = require('hbs');
 const session = require("express-session");
 const Mongostore = require("connect-mongo")(session);
-
+const nodemailer = require('nodemailer');
 
 // Connect
 mongoose.connect('mongodb://localhost/bookSwap', { useNewUrlParser: true });
@@ -49,10 +49,6 @@ app.use(session({
 // Cookie Parser
 app.use(cookieParser("this-is-a-secret"));
 
-// --> Node mailer
-const nodeMailerRoute = require('./routes/nodemailer-route')
-app.use('/', nodeMailerRoute);
-
 // --> Default Route
 const defaultRoute = require('./routes/default-route')
 app.use('/', defaultRoute);
@@ -71,20 +67,9 @@ app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
 app.use('/', require("./routes/site-route"))
 
-// Node mailer
-app.post('/send', (req, res) => {
-  console.log(req.body);
-  // const output = `
-  // <p>You have a new book request</p>
-  // <h3>Contact Details</h3>
-  // <ul>
-  //   <li>Email: ${email}</li>
-  //   <li>Name: ${title}</li>
-  //   <li>Author: ${author}</li>
-  //   <li>Language: ${language}</li>
-  //   <li>Year: ${year}</li>
-  // </ul>
-  // `;
-});
+
+/// PLAN B:
+
+// Nodemailer
 
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${port}!`))

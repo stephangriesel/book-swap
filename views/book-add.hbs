@@ -1,26 +1,28 @@
 {{>header }}
 
-<div class="dead-center animated zoomIn">
-    <h1>ADD A BOOK</h1>
-<form action="/books/add" method="post">
+<div class="dead-center">
+    <div class="bg animated zoomIn">
+        <h1>ADD A BOOK</h1>
+        <form action="/books/add" method="post">
 
-    <label for="">Title:</label><br>
-    <input type="text" name="title"><br>
+            <label for="">Title:</label><br>
+            <input type="text" name="title"><br>
 
-    <label for="">Author:</label><br>
-    <input type="text" name="author"><br>
+            <label for="">Author:</label><br>
+            <input type="text" name="author"><br>
 
-    <label for="">Imagelink:</label><br>
-    <input type="text" name="imageLink"><br>
+            <label for="">Imagelink:</label><br>
+            <input type="text" name="imageLink"><br>
 
-    <label for="">Language:</label><br>
-    <input type="text" name="language"><br>
+            <label for="">Language:</label><br>
+            <input type="text" name="language"><br>
 
-    <label for="">Year:</label><br>
-    <input type="number" name="year"><br>
+            <label for="">Year:</label><br>
+            <input type="number" name="year"><br>
 
-    <button type="submit">ADD</button><br>
-</form>
+            <button type="submit">ADD</button><br>
+        </form>
+    </div>
 </div>
 
 {{>footer }}
