@@ -12,6 +12,7 @@ const hbs = require('hbs');
 const session = require("express-session");
 const Mongostore = require("connect-mongo")(session);
 const nodemailer = require('nodemailer');
+const port = process.env.PORT || 3000;
 require('dotenv').config();
 
 // Connect
@@ -67,5 +68,6 @@ app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
 app.use('/', require("./routes/site-route"))
 
-app.listen(console.log("Server started"), process.env.PORT);
-
+app.listen(port, function () {
+  console.log('Listening on ' + port + '!');
+});
