@@ -83,6 +83,34 @@ router.get('/books/swap', (req, res, next) => {
         })
 });
 
+router.post('/book-swap-request', (req,res,next) => {
+    const {
+        title,
+        author,
+        imageLink,
+        language,
+        year
+    } = req.body;
+    Book.update({ _id: req.query.book_id }, {
+        $set:
+        {
+            title,
+            author,
+            imageLink,
+            language,
+            year
+        }
+    },
+        { new: true }
+    )
+        .then((book) => {
+            res.redirect('/book-swap-request');
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+})
+
 // Update the book
 router.post('/books/edit', (req, res, next) => {
     const {
