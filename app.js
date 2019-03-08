@@ -4,7 +4,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
-const port = proces.env.PORT;
 const Book = require('./models/book');
 // const History = require('./models/history');
 const path = require('path');
@@ -68,4 +67,5 @@ app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
 app.use('/', require("./routes/site-route"))
 
-app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${process.env.PORT}!`))
+app.listen(console.log("Server started"), process.env.PORT);
+
