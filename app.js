@@ -73,4 +73,4 @@ app.use('/', require("./routes/site-route"))
 
 // Nodemailer
 
-app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: `process.env.PORT`))
+app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${process.env.PORT}!`))
