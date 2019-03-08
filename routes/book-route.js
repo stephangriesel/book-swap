@@ -83,6 +83,10 @@ router.get('/books/swap', (req, res, next) => {
         })
 });
 
+router.get('/book-swap-request', (req, res) => { 
+    res.render("book-swap-request");
+});
+
 router.post('/book-swap-request', (req,res,next) => {
     const {
         title,

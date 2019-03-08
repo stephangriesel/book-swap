@@ -68,9 +68,4 @@ app.use('/', authRoute);
 app.use('/auth', require('./routes/auth-route'))
 app.use('/', require("./routes/site-route"))
 
-
-/// PLAN B:
-
-// Nodemailer
-
 app.listen(port, () => console.log(`Hoor hoor, ek luister op poort: ${process.env.PORT}!`))

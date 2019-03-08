@@ -2,11 +2,18 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  font-size:18px;
+  color:#FFFFFF;
 }
 
 h5 {
   padding: 0;
   margin: 0;
+}
+
+p {
+  margin:5px;
+  padding:0;
 }
 
 .details {
@@ -35,10 +42,15 @@ h5 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 300px;
-  background: rgba(168, 168, 168, 0.6);
+  width: 500px;
+  height: 500px;
+  background: rgba(72,72,70,0.6);
   border-radius: 15px;
+  padding:20px;
+}
+
+.bg img {
+  border-radius:10px;
 }
 
 .index-page {
@@ -71,7 +83,7 @@ h5 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 80vh;
 }
 
 .item-wrapper-outside {
@@ -83,19 +95,50 @@ h5 {
 
 .item-wrapper-inside {
   display: flex;
-  background: rgba(168, 168, 168, 0.6);
+  background: rgba(72,72,70,0.6);
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border: 2px solid #a0a0a0;
   border-radius: 10px;
-  padding: 20px;
+  padding:20px;
   margin: 20px;
-  width: 220px;
+  width: 240px;
   height: 450px;
 }
 
+/* INPUT */
+
+input {
+  color:#484846;
+  border:none;
+  padding:15px;
+  font-size:19px;
+}
+
+input:focus {
+  background:#7b8fa0;
+  border:none;
+  padding:15px;
+}
 /* BUTTONS */
+
+button {
+  color:#FFFFFF;
+  padding:10px 15px;
+  border:none;
+  outline:none;
+  font-size:18px;
+  background:#144670;
+  margin-top:5px;
+  border-radius:10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background:#3d5569;
+  cursor: pointer;
+}
 
 .swap-button {
   margin-left: 10px;
@@ -130,9 +173,10 @@ img {
   display: flex;
   justify-content: left;
   align-items: center;
-  background-color: #0A2C42;
+  background-color: #144670;
   height: 125px;
   padding: 20px 10px;
+  font-size:20px;
 }
 
 ul {
@@ -146,13 +190,12 @@ li {
   padding-right: 8px;
 }
 
-
 footer {
   color: #FFFFFF;
   display: flex;
-  justify-content: left;
+  justify-content: right;
   align-items: center;
-  background-color: #0A2C42;
+  background-color: #144670;
   height: 50px;
   padding: 20px 10px;
   text-transform: uppercase;
