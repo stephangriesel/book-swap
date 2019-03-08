@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const User = require("../models/user");
 
 router.use(function (req, res, next) {
     if (req.session && req.session.user) {
@@ -20,7 +21,7 @@ router.use(function (req, res, next) {
 
 function requireLogin(req, res, next) {
     if (!req.user) {
-        res.render('/login');
+        res.redirect('/login');
     } else {
         next();
     }
