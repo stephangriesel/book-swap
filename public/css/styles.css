@@ -24,12 +24,29 @@ p {
   margin: 20px;
 }
 
+/* SITE WRAPPER*/
 .site {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
+.index-page {
+  background: url("../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ALIGN DEAD CENTER */
+.dead-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+/* FLEX LAYOUTS */
 .full-column {
   display: flex;
   /* flex-direction: column */
@@ -40,6 +57,8 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+/* BLOCKS OVERLAY */
 
 .bg-login {
   display: flex;
@@ -70,16 +89,11 @@ p {
   border-radius:10px;
 }
 
-.index-page {
-  background: url("../img/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .img-logo {
   margin-bottom:30px;
 }
 
+/* LOGIN PAGE */
 .login a {
   color: #1d1d1d;
   text-decoration: none;
@@ -94,14 +108,6 @@ p {
   text-decoration: none;
   padding: 10px;
   transition: ease-in 0.4s;
-}
-
-.dead-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 80vh;
 }
 
 .item-wrapper-outside {
@@ -126,8 +132,6 @@ p {
 }
 
 /* INPUT */
-
-
 input {
   color:#353535;
   border:none;
@@ -143,8 +147,8 @@ input:focus {
   outline-color: #a0d6f2;
   outline-style: solid 5px;
 }
-/* BUTTONS */
 
+/* BUTTONS */
 button {
   color:#FFFFFF;
   padding:10px 15px;
@@ -167,7 +171,13 @@ button:hover {
   color: #fff;
   text-decoration: none;
   padding: 4px;
-  background-color: rgb(241, 158, 48);
+  border-radius:5px;
+  background-color: rgb(255, 146, 5);
+}
+
+.swap-button:hover {
+  transition: ease-in-out 0.3s;
+  background-color: rgb(255, 208, 0);
 }
 
 .edit-button {
@@ -175,7 +185,13 @@ button:hover {
   color: #fff;
   text-decoration: none;
   padding: 4px;
-  background-color: rgb(78, 108, 136);
+  border-radius:5px;
+  background-color: rgb(51, 71, 90);
+}
+
+.edit-button:hover {
+  transition: ease-in-out 0.3s;
+  background-color: rgb(72, 154, 236);
 }
 
 .remove-button {
@@ -183,7 +199,13 @@ button:hover {
   color: #fff;
   text-decoration: none;
   padding: 4px;
-  background-color: rgb(121, 41, 41);
+  border-radius:5px;
+  background-color: rgb(94, 15, 15);
+}
+
+.remove-button:hover {
+  transition: ease-in-out 0.3s;
+  background-color: rgb(155, 0, 0);
 }
 
 img {
